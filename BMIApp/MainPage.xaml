@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BMIApp.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Roboto"></Setter>
+                <Setter Property="FontSize" Value="Medium"></Setter>
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="Padding" Value="0,0,0,0"></Setter>
+                <Setter Property="IsClippedToBounds" Value="False"></Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid x:Name="grdMain" Margin="15,15,0,0" Grid.ColumnSpan="3" Padding="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120" x:Name="HeaderRow">
+            </RowDefinition>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="55"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label Text="Body Mass Index Calculator" Grid.Row="0" Grid.ColumnSpan="3" FontSize="Title" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalTextAlignment="Center" BackgroundColor="DarkBlue" TextColor="White" ></Label>
+        <Label Text="Age" x:Name="lblAge" Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"></Label>
+        <Label BindingContext="{x:Reference stpAge}" Text="{Binding Value}" x:Name="lblAgeValue" Grid.Row="2" Grid.Column="1"></Label>
+        <Stepper Minimum="14" Maximum="99" Increment="1" Value="18" x:Name="stpAge" Grid.Row="2" Grid.Column="2"/>
+        <Label Text="Gender" x:Name="lblGender" Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="End"/>
+        <Label Text="Male" x:Name="lblGenderValue" Grid.Row="3" Grid.Column="1"/>
+        <Switch IsToggled="false" x:Name="swtGender" Toggled="SwtGender_Toggled" Grid.Row="3" Grid.Column="2" HorizontalOptions="Center"/>
+        <Label Text="Height (cm)" x:Name="lblHeight" Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="End"/>
+        <Label BindingContext="{x:Reference stpHeight}" Text="{Binding Value}"  x:Name="lblHeightValue" Grid.Row="4" Grid.Column="1"/>
+        <Stepper Minimum="1" Maximum="220" Increment="1" x:Name="stpHeight" ValueChanged="stpHeight_ValueChanged" Value="150" Grid.Row="4" Grid.Column="2"></Stepper>
+        <Label Text="Weight (kg)" x:Name="lblWeight" Grid.Row="5" Grid.Column="0" HorizontalTextAlignment="End" VerticalTextAlignment="Start"/>
+        <Label BindingContext="{x:Reference stpWeight}" Text="{Binding Value}" x:Name="lblWeightValue" Grid.Row="5" Grid.Column="1" VerticalTextAlignment="Start"></Label>
+        <Stepper x:Name="stpWeight" Minimum="1" Maximum="350" Increment="1" ValueChanged="stpWeight_ValueChanged" Value="60" Grid.Row="5" Grid.Column="2" VerticalOptions="Start"></Stepper>
+        <Label x:Name="lblBMI" Text="Calculated BMI" Grid.Row="7" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" FontSize="Large" VerticalTextAlignment="End" BackgroundColor="DarkBlue" TextColor="White"/>
+        <Frame BorderColor="DarkBlue" CornerRadius="5" HasShadow="True" Grid.Row="8" Grid.ColumnSpan="3">
+            <ContentView>
+                <Label x:Name="lblBMIValue" Text="26.3146" HorizontalOptions="FillAndExpand" FontSize="50" HorizontalTextAlignment="Center"/>
+            </ContentView>
+        </Frame>
+
+       <Label x:Name="lblBMIValueInterpreted" Text="Overweight" HorizontalTextAlignment="Center" FontSize="30" Grid.Row="9" Grid.ColumnSpan="3" VerticalTextAlignment="Start"/>
+       
+   
+        <Button x:Name="cmdAbout" Grid.Row="10" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="About BMI Calculator" Clicked="cmdAbout_Clicked"/>
+    </Grid>
+
+</ContentPage>
